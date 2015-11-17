@@ -4,9 +4,9 @@ using Orleans;
 namespace OrleansGrainInterface
 {
     /// <summary>
-    /// Grain interface IGrain1
+    /// Grain interface IUserGrain
     /// </summary>
-    public interface IGrain1 : IGrain
+    public interface IUserGrain : IGrain
     {
 
     }
