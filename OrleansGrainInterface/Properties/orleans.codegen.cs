@@ -26,7 +26,171 @@ namespace OrleansGrainInterface
     using System.Collections.Generic;
     using Orleans;
     using Orleans.Runtime;
+    using DTO;
     
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.0.10.0")]
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute()]
+    public class RoleGrainFactory
+    {
+        
+
+            public static IRoleGrain Cast(global::Orleans.Runtime.IAddressable grainRef)
+            {
+                
+                return RoleGrainReference.Cast(grainRef);
+            }
+        
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.0.10.0")]
+        [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute()]
+        [System.SerializableAttribute()]
+        [global::Orleans.CodeGeneration.GrainReferenceAttribute("OrleansGrainInterface.IRoleGrain")]
+        internal class RoleGrainReference : global::Orleans.Runtime.GrainReference, global::Orleans.Runtime.IAddressable, OrleansGrainInterface.IRoleGrain
+        {
+            
+
+            public static IRoleGrain Cast(global::Orleans.Runtime.IAddressable grainRef)
+            {
+                
+                return (IRoleGrain) global::Orleans.Runtime.GrainReference.CastInternal(typeof(IRoleGrain), (global::Orleans.Runtime.GrainReference gr) => { return new RoleGrainReference(gr);}, grainRef, -109239097);
+            }
+            
+            protected internal RoleGrainReference(global::Orleans.Runtime.GrainReference reference) : 
+                    base(reference)
+            {
+            }
+            
+            protected internal RoleGrainReference(SerializationInfo info, StreamingContext context) : 
+                    base(info, context)
+            {
+            }
+            
+            protected override int InterfaceId
+            {
+                get
+                {
+                    return -109239097;
+                }
+            }
+            
+            public override string InterfaceName
+            {
+                get
+                {
+                    return "OrleansGrainInterface.IRoleGrain";
+                }
+            }
+            
+            [global::Orleans.CodeGeneration.CopierMethodAttribute()]
+            public static object _Copier(object original)
+            {
+                RoleGrainReference input = ((RoleGrainReference)(original));
+                return ((RoleGrainReference)(global::Orleans.Runtime.GrainReference.CopyGrainReference(input)));
+            }
+            
+            [global::Orleans.CodeGeneration.SerializerMethodAttribute()]
+            public static void _Serializer(object original, global::Orleans.Serialization.BinaryTokenStreamWriter stream, System.Type expected)
+            {
+                RoleGrainReference input = ((RoleGrainReference)(original));
+                global::Orleans.Runtime.GrainReference.SerializeGrainReference(input, stream, expected);
+            }
+            
+            [global::Orleans.CodeGeneration.DeserializerMethodAttribute()]
+            public static object _Deserializer(System.Type expected, global::Orleans.Serialization.BinaryTokenStreamReader stream)
+            {
+                return RoleGrainReference.Cast(((global::Orleans.Runtime.GrainReference)(global::Orleans.Runtime.GrainReference.DeserializeGrainReference(expected, stream))));
+            }
+            
+            public override bool IsCompatible(int interfaceId)
+            {
+                return (interfaceId == this.InterfaceId);
+            }
+            
+            protected override string GetMethodName(int interfaceId, int methodId)
+            {
+                return RoleGrainMethodInvoker.GetMethodName(interfaceId, methodId);
+            }
+            
+            System.Threading.Tasks.Task<DTO.RoleMessage> OrleansGrainInterface.IRoleGrain.GetRole(int @id)
+            {
+
+                return base.InvokeMethodAsync<DTO.RoleMessage>(-937469797, new object[] {@id} );
+            }
+            
+            System.Threading.Tasks.Task<DTO.RoleMessage> OrleansGrainInterface.IRoleGrain.CreateRole(DTO.CreateRole @createRole)
+            {
+
+                return base.InvokeMethodAsync<DTO.RoleMessage>(-1501449541, new object[] {@createRole} );
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.0.10.0")]
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute()]
+    [global::Orleans.CodeGeneration.MethodInvokerAttribute("OrleansGrainInterface.IRoleGrain", -109239097)]
+    internal class RoleGrainMethodInvoker : global::Orleans.CodeGeneration.IGrainMethodInvoker
+    {
+        
+        int global::Orleans.CodeGeneration.IGrainMethodInvoker.InterfaceId
+        {
+            get
+            {
+                return -109239097;
+            }
+        }
+        
+        global::System.Threading.Tasks.Task<object> global::Orleans.CodeGeneration.IGrainMethodInvoker.Invoke(global::Orleans.Runtime.IAddressable grain, int interfaceId, int methodId, object[] arguments)
+        {
+
+            try
+            {                    if (grain == null) throw new System.ArgumentNullException("grain");
+                switch (interfaceId)
+                {
+                    case -109239097:  // IRoleGrain
+                        switch (methodId)
+                        {
+                            case -937469797: 
+                                return ((IRoleGrain)grain).GetRole((System.Int32)arguments[0]).ContinueWith(t => {if (t.Status == System.Threading.Tasks.TaskStatus.Faulted) throw t.Exception; return (object)t.Result; });
+                            case -1501449541: 
+                                return ((IRoleGrain)grain).CreateRole((DTO.CreateRole)arguments[0]).ContinueWith(t => {if (t.Status == System.Threading.Tasks.TaskStatus.Faulted) throw t.Exception; return (object)t.Result; });
+                            default: 
+                            throw new NotImplementedException("interfaceId="+interfaceId+",methodId="+methodId);
+                        }
+                    default:
+                        throw new System.InvalidCastException("interfaceId="+interfaceId);
+                }
+            }
+            catch(Exception ex)
+            {
+                var t = new System.Threading.Tasks.TaskCompletionSource<object>();
+                t.SetException(ex);
+                return t.Task;
+            }
+        }
+        
+        public static string GetMethodName(int interfaceId, int methodId)
+        {
+
+            switch (interfaceId)
+            {
+                
+                case -109239097:  // IRoleGrain
+                    switch (methodId)
+                    {
+                        case -937469797:
+                            return "GetRole";
+                    case -1501449541:
+                            return "CreateRole";
+                    
+                        default: 
+                            throw new NotImplementedException("interfaceId="+interfaceId+",methodId="+methodId);
+                    }
+
+                default:
+                    throw new System.InvalidCastException("interfaceId="+interfaceId);
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.0.10.0")]
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute()]
@@ -109,6 +273,18 @@ namespace OrleansGrainInterface
             {
                 return UserGrainMethodInvoker.GetMethodName(interfaceId, methodId);
             }
+            
+            System.Threading.Tasks.Task<DTO.UserMessage> OrleansGrainInterface.IUserGrain.CreateUser(DTO.CreateUser @createUser)
+            {
+
+                return base.InvokeMethodAsync<DTO.UserMessage>(-87279645, new object[] {@createUser} );
+            }
+            
+            System.Threading.Tasks.Task<DTO.UserMessage> OrleansGrainInterface.IUserGrain.Get(int @userId)
+            {
+
+                return base.InvokeMethodAsync<DTO.UserMessage>(-225283468, new object[] {@userId} );
+            }
         }
     }
     
@@ -136,6 +312,10 @@ namespace OrleansGrainInterface
                     case -2043594973:  // IUserGrain
                         switch (methodId)
                         {
+                            case -87279645: 
+                                return ((IUserGrain)grain).CreateUser((CreateUser)arguments[0]).ContinueWith(t => {if (t.Status == System.Threading.Tasks.TaskStatus.Faulted) throw t.Exception; return (object)t.Result; });
+                            case -225283468: 
+                                return ((IUserGrain)grain).Get((System.Int32)arguments[0]).ContinueWith(t => {if (t.Status == System.Threading.Tasks.TaskStatus.Faulted) throw t.Exception; return (object)t.Result; });
                             default: 
                             throw new NotImplementedException("interfaceId="+interfaceId+",methodId="+methodId);
                         }
@@ -160,7 +340,11 @@ namespace OrleansGrainInterface
                 case -2043594973:  // IUserGrain
                     switch (methodId)
                     {
-                        
+                        case -87279645:
+                            return "CreateUser";
+                    case -225283468:
+                            return "Get";
+                    
                         default: 
                             throw new NotImplementedException("interfaceId="+interfaceId+",methodId="+methodId);
                     }
@@ -168,6 +352,393 @@ namespace OrleansGrainInterface
                 default:
                     throw new System.InvalidCastException("interfaceId="+interfaceId);
             }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.0.10.0")]
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute()]
+    public class UserRoleLinkGrainFactory
+    {
+        
+
+            public static IUserRoleLinkGrain Cast(global::Orleans.Runtime.IAddressable grainRef)
+            {
+                
+                return UserRoleLinkGrainReference.Cast(grainRef);
+            }
+        
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.0.10.0")]
+        [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute()]
+        [System.SerializableAttribute()]
+        [global::Orleans.CodeGeneration.GrainReferenceAttribute("OrleansGrainInterface.IUserRoleLinkGrain")]
+        internal class UserRoleLinkGrainReference : global::Orleans.Runtime.GrainReference, global::Orleans.Runtime.IAddressable, OrleansGrainInterface.IUserRoleLinkGrain
+        {
+            
+
+            public static IUserRoleLinkGrain Cast(global::Orleans.Runtime.IAddressable grainRef)
+            {
+                
+                return (IUserRoleLinkGrain) global::Orleans.Runtime.GrainReference.CastInternal(typeof(IUserRoleLinkGrain), (global::Orleans.Runtime.GrainReference gr) => { return new UserRoleLinkGrainReference(gr);}, grainRef, -2051752788);
+            }
+            
+            protected internal UserRoleLinkGrainReference(global::Orleans.Runtime.GrainReference reference) : 
+                    base(reference)
+            {
+            }
+            
+            protected internal UserRoleLinkGrainReference(SerializationInfo info, StreamingContext context) : 
+                    base(info, context)
+            {
+            }
+            
+            protected override int InterfaceId
+            {
+                get
+                {
+                    return -2051752788;
+                }
+            }
+            
+            public override string InterfaceName
+            {
+                get
+                {
+                    return "OrleansGrainInterface.IUserRoleLinkGrain";
+                }
+            }
+            
+            [global::Orleans.CodeGeneration.CopierMethodAttribute()]
+            public static object _Copier(object original)
+            {
+                UserRoleLinkGrainReference input = ((UserRoleLinkGrainReference)(original));
+                return ((UserRoleLinkGrainReference)(global::Orleans.Runtime.GrainReference.CopyGrainReference(input)));
+            }
+            
+            [global::Orleans.CodeGeneration.SerializerMethodAttribute()]
+            public static void _Serializer(object original, global::Orleans.Serialization.BinaryTokenStreamWriter stream, System.Type expected)
+            {
+                UserRoleLinkGrainReference input = ((UserRoleLinkGrainReference)(original));
+                global::Orleans.Runtime.GrainReference.SerializeGrainReference(input, stream, expected);
+            }
+            
+            [global::Orleans.CodeGeneration.DeserializerMethodAttribute()]
+            public static object _Deserializer(System.Type expected, global::Orleans.Serialization.BinaryTokenStreamReader stream)
+            {
+                return UserRoleLinkGrainReference.Cast(((global::Orleans.Runtime.GrainReference)(global::Orleans.Runtime.GrainReference.DeserializeGrainReference(expected, stream))));
+            }
+            
+            public override bool IsCompatible(int interfaceId)
+            {
+                return (interfaceId == this.InterfaceId);
+            }
+            
+            protected override string GetMethodName(int interfaceId, int methodId)
+            {
+                return UserRoleLinkGrainMethodInvoker.GetMethodName(interfaceId, methodId);
+            }
+            
+            System.Threading.Tasks.Task<DTO.UserRoleLinkMessage> OrleansGrainInterface.IUserRoleLinkGrain.Get(int @userRoleLinkId)
+            {
+
+                return base.InvokeMethodAsync<DTO.UserRoleLinkMessage>(-225283468, new object[] {@userRoleLinkId} );
+            }
+            
+            System.Threading.Tasks.Task<DTO.UserRoleLinkMessage> OrleansGrainInterface.IUserRoleLinkGrain.Create(int @userId, int @roleId)
+            {
+
+                return base.InvokeMethodAsync<DTO.UserRoleLinkMessage>(-2081676008, new object[] {@userId, @roleId} );
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.0.10.0")]
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute()]
+    [global::Orleans.CodeGeneration.MethodInvokerAttribute("OrleansGrainInterface.IUserRoleLinkGrain", -2051752788)]
+    internal class UserRoleLinkGrainMethodInvoker : global::Orleans.CodeGeneration.IGrainMethodInvoker
+    {
+        
+        int global::Orleans.CodeGeneration.IGrainMethodInvoker.InterfaceId
+        {
+            get
+            {
+                return -2051752788;
+            }
+        }
+        
+        global::System.Threading.Tasks.Task<object> global::Orleans.CodeGeneration.IGrainMethodInvoker.Invoke(global::Orleans.Runtime.IAddressable grain, int interfaceId, int methodId, object[] arguments)
+        {
+
+            try
+            {                    if (grain == null) throw new System.ArgumentNullException("grain");
+                switch (interfaceId)
+                {
+                    case -2051752788:  // IUserRoleLinkGrain
+                        switch (methodId)
+                        {
+                            case -225283468: 
+                                return ((IUserRoleLinkGrain)grain).Get((System.Int32)arguments[0]).ContinueWith(t => {if (t.Status == System.Threading.Tasks.TaskStatus.Faulted) throw t.Exception; return (object)t.Result; });
+                            case -2081676008: 
+                                return ((IUserRoleLinkGrain)grain).Create((System.Int32)arguments[0], (System.Int32)arguments[1]).ContinueWith(t => {if (t.Status == System.Threading.Tasks.TaskStatus.Faulted) throw t.Exception; return (object)t.Result; });
+                            default: 
+                            throw new NotImplementedException("interfaceId="+interfaceId+",methodId="+methodId);
+                        }
+                    default:
+                        throw new System.InvalidCastException("interfaceId="+interfaceId);
+                }
+            }
+            catch(Exception ex)
+            {
+                var t = new System.Threading.Tasks.TaskCompletionSource<object>();
+                t.SetException(ex);
+                return t.Task;
+            }
+        }
+        
+        public static string GetMethodName(int interfaceId, int methodId)
+        {
+
+            switch (interfaceId)
+            {
+                
+                case -2051752788:  // IUserRoleLinkGrain
+                    switch (methodId)
+                    {
+                        case -225283468:
+                            return "Get";
+                    case -2081676008:
+                            return "Create";
+                    
+                        default: 
+                            throw new NotImplementedException("interfaceId="+interfaceId+",methodId="+methodId);
+                    }
+
+                default:
+                    throw new System.InvalidCastException("interfaceId="+interfaceId);
+            }
+        }
+    }
+}
+namespace OrleansGrainInterfaceSerializers
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using Orleans.Serialization;
+    using DTO;
+    using System.Collections;
+    using System.Runtime.InteropServices;
+    
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.0.10.0")]
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute()]
+    [global::Orleans.CodeGeneration.RegisterSerializerAttribute()]
+    internal class DTO_RoleMessageSerialization
+    {
+        
+        static DTO_RoleMessageSerialization()
+        {
+            Register();
+        }
+        
+        public static object DeepCopier(object original)
+        {
+            DTO.RoleMessage input = ((DTO.RoleMessage)(original));
+            DTO.RoleMessage result = new DTO.RoleMessage();
+            Orleans.Serialization.SerializationContext.Current.RecordObject(original, result);
+            result.Id = input.Id;
+            result.Name = input.Name;
+            return result;
+        }
+        
+        public static void Serializer(object untypedInput, Orleans.Serialization.BinaryTokenStreamWriter stream, System.Type expected)
+        {
+            DTO.RoleMessage input = ((DTO.RoleMessage)(untypedInput));
+            Orleans.Serialization.SerializationManager.SerializeInner(input.Id, stream, typeof(int));
+            Orleans.Serialization.SerializationManager.SerializeInner(input.Name, stream, typeof(string));
+        }
+        
+        public static object Deserializer(System.Type expected, global::Orleans.Serialization.BinaryTokenStreamReader stream)
+        {
+            DTO.RoleMessage result = new DTO.RoleMessage();
+            result.Id = ((int)(Orleans.Serialization.SerializationManager.DeserializeInner(typeof(int), stream)));
+            result.Name = ((string)(Orleans.Serialization.SerializationManager.DeserializeInner(typeof(string), stream)));
+            return result;
+        }
+        
+        public static void Register()
+        {
+            global::Orleans.Serialization.SerializationManager.Register(typeof(DTO.RoleMessage), DeepCopier, Serializer, Deserializer);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.0.10.0")]
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute()]
+    [global::Orleans.CodeGeneration.RegisterSerializerAttribute()]
+    internal class DTO_CreateRoleSerialization
+    {
+        
+        static DTO_CreateRoleSerialization()
+        {
+            Register();
+        }
+        
+        public static object DeepCopier(object original)
+        {
+            DTO.CreateRole input = ((DTO.CreateRole)(original));
+            DTO.CreateRole result = new DTO.CreateRole();
+            Orleans.Serialization.SerializationContext.Current.RecordObject(original, result);
+            result.Name = input.Name;
+            return result;
+        }
+        
+        public static void Serializer(object untypedInput, Orleans.Serialization.BinaryTokenStreamWriter stream, System.Type expected)
+        {
+            DTO.CreateRole input = ((DTO.CreateRole)(untypedInput));
+            Orleans.Serialization.SerializationManager.SerializeInner(input.Name, stream, typeof(string));
+        }
+        
+        public static object Deserializer(System.Type expected, global::Orleans.Serialization.BinaryTokenStreamReader stream)
+        {
+            DTO.CreateRole result = new DTO.CreateRole();
+            result.Name = ((string)(Orleans.Serialization.SerializationManager.DeserializeInner(typeof(string), stream)));
+            return result;
+        }
+        
+        public static void Register()
+        {
+            global::Orleans.Serialization.SerializationManager.Register(typeof(DTO.CreateRole), DeepCopier, Serializer, Deserializer);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.0.10.0")]
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute()]
+    [global::Orleans.CodeGeneration.RegisterSerializerAttribute()]
+    internal class DTO_UserMessageSerialization
+    {
+        
+        static DTO_UserMessageSerialization()
+        {
+            Register();
+        }
+        
+        public static object DeepCopier(object original)
+        {
+            DTO.UserMessage input = ((DTO.UserMessage)(original));
+            DTO.UserMessage result = new DTO.UserMessage();
+            Orleans.Serialization.SerializationContext.Current.RecordObject(original, result);
+            result.Age = input.Age;
+            result.Id = input.Id;
+            result.Name = input.Name;
+            return result;
+        }
+        
+        public static void Serializer(object untypedInput, Orleans.Serialization.BinaryTokenStreamWriter stream, System.Type expected)
+        {
+            DTO.UserMessage input = ((DTO.UserMessage)(untypedInput));
+            Orleans.Serialization.SerializationManager.SerializeInner(input.Age, stream, typeof(int));
+            Orleans.Serialization.SerializationManager.SerializeInner(input.Id, stream, typeof(int));
+            Orleans.Serialization.SerializationManager.SerializeInner(input.Name, stream, typeof(string));
+        }
+        
+        public static object Deserializer(System.Type expected, global::Orleans.Serialization.BinaryTokenStreamReader stream)
+        {
+            DTO.UserMessage result = new DTO.UserMessage();
+            result.Age = ((int)(Orleans.Serialization.SerializationManager.DeserializeInner(typeof(int), stream)));
+            result.Id = ((int)(Orleans.Serialization.SerializationManager.DeserializeInner(typeof(int), stream)));
+            result.Name = ((string)(Orleans.Serialization.SerializationManager.DeserializeInner(typeof(string), stream)));
+            return result;
+        }
+        
+        public static void Register()
+        {
+            global::Orleans.Serialization.SerializationManager.Register(typeof(DTO.UserMessage), DeepCopier, Serializer, Deserializer);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.0.10.0")]
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute()]
+    [global::Orleans.CodeGeneration.RegisterSerializerAttribute()]
+    internal class DTO_CreateUserSerialization
+    {
+        
+        static DTO_CreateUserSerialization()
+        {
+            Register();
+        }
+        
+        public static object DeepCopier(object original)
+        {
+            DTO.CreateUser input = ((DTO.CreateUser)(original));
+            DTO.CreateUser result = new DTO.CreateUser();
+            Orleans.Serialization.SerializationContext.Current.RecordObject(original, result);
+            result.Age = input.Age;
+            result.Name = input.Name;
+            return result;
+        }
+        
+        public static void Serializer(object untypedInput, Orleans.Serialization.BinaryTokenStreamWriter stream, System.Type expected)
+        {
+            DTO.CreateUser input = ((DTO.CreateUser)(untypedInput));
+            Orleans.Serialization.SerializationManager.SerializeInner(input.Age, stream, typeof(int));
+            Orleans.Serialization.SerializationManager.SerializeInner(input.Name, stream, typeof(string));
+        }
+        
+        public static object Deserializer(System.Type expected, global::Orleans.Serialization.BinaryTokenStreamReader stream)
+        {
+            DTO.CreateUser result = new DTO.CreateUser();
+            result.Age = ((int)(Orleans.Serialization.SerializationManager.DeserializeInner(typeof(int), stream)));
+            result.Name = ((string)(Orleans.Serialization.SerializationManager.DeserializeInner(typeof(string), stream)));
+            return result;
+        }
+        
+        public static void Register()
+        {
+            global::Orleans.Serialization.SerializationManager.Register(typeof(DTO.CreateUser), DeepCopier, Serializer, Deserializer);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.0.10.0")]
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute()]
+    [global::Orleans.CodeGeneration.RegisterSerializerAttribute()]
+    internal class DTO_UserRoleLinkMessageSerialization
+    {
+        
+        static DTO_UserRoleLinkMessageSerialization()
+        {
+            Register();
+        }
+        
+        public static object DeepCopier(object original)
+        {
+            DTO.UserRoleLinkMessage input = ((DTO.UserRoleLinkMessage)(original));
+            DTO.UserRoleLinkMessage result = new DTO.UserRoleLinkMessage();
+            Orleans.Serialization.SerializationContext.Current.RecordObject(original, result);
+            result.Id = input.Id;
+            result.Role = ((DTO.RoleMessage)(Orleans.Serialization.SerializationManager.DeepCopyInner(input.Role)));
+            result.User = ((DTO.UserMessage)(Orleans.Serialization.SerializationManager.DeepCopyInner(input.User)));
+            return result;
+        }
+        
+        public static void Serializer(object untypedInput, Orleans.Serialization.BinaryTokenStreamWriter stream, System.Type expected)
+        {
+            DTO.UserRoleLinkMessage input = ((DTO.UserRoleLinkMessage)(untypedInput));
+            Orleans.Serialization.SerializationManager.SerializeInner(input.Id, stream, typeof(int));
+            Orleans.Serialization.SerializationManager.SerializeInner(input.Role, stream, typeof(DTO.RoleMessage));
+            Orleans.Serialization.SerializationManager.SerializeInner(input.User, stream, typeof(DTO.UserMessage));
+        }
+        
+        public static object Deserializer(System.Type expected, global::Orleans.Serialization.BinaryTokenStreamReader stream)
+        {
+            DTO.UserRoleLinkMessage result = new DTO.UserRoleLinkMessage();
+            result.Id = ((int)(Orleans.Serialization.SerializationManager.DeserializeInner(typeof(int), stream)));
+            result.Role = ((DTO.RoleMessage)(Orleans.Serialization.SerializationManager.DeserializeInner(typeof(DTO.RoleMessage), stream)));
+            result.User = ((DTO.UserMessage)(Orleans.Serialization.SerializationManager.DeserializeInner(typeof(DTO.UserMessage), stream)));
+            return result;
+        }
+        
+        public static void Register()
+        {
+            global::Orleans.Serialization.SerializationManager.Register(typeof(DTO.UserRoleLinkMessage), DeepCopier, Serializer, Deserializer);
         }
     }
 }

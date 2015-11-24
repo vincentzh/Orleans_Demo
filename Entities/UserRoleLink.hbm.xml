@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" schema="dbo" assembly="Domain" default-lazy="false">
+  <class name="Domain.UserRoleLink" table="tblUserRoleLinks" dynamic-update="true">
+    <id name="Id" type="Int32" unsaved-value="0">
+      <generator class="identity" />
+    </id>
+
+<many-to-one name="User" class="Domain.User,Domain" column="UserId" not-null="true" />
+    <many-to-one name="Role" class="Domain.Role,Domain" column="RoleId" not-null="true"/>
+  </class>
+</hibernate-mapping>
