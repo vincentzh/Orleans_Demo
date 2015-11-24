@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,11 +13,15 @@ namespace Presenters
     public class UserPresenter
     {
         private readonly UserRepository _userRepository = new UserRepository();
-        readonly BurrowFramework _burrow=new BurrowFramework();
+        private readonly BurrowFramework _burrow = new BurrowFramework();
+
         public Task<UserMessage> Get(int i)
         {
+            User user = null;
             _burrow.InitWorkSpace();
-            var user = _userRepository.Get(i);
+
+            user = _userRepository.Get(i);
+
             _burrow.CloseWorkSpace();
 
             return user != null
@@ -26,7 +31,7 @@ namespace Presenters
                     Age = user.Age,
                     Id = user.Id
                 })
-                : null;
+                : Task.FromResult((UserMessage) null);
         }
 
         public Task<UserMessage> Create(CreateUser createUser)
@@ -37,7 +42,14 @@ namespace Presenters
                 Name = createUser.Name
             };
             _burrow.InitWorkSpace();
-            _userRepository.Save(user);
+            try
+            {
+                _userRepository.Save(user);
+            }
+            catch (Exception ex)
+            {
+            }
+
             _burrow.CloseWorkSpace();
             return Task.FromResult(new UserMessage()
             {
@@ -45,23 +57,21 @@ namespace Presenters
                 Age = user.Age,
                 Id = user.Id
             });
-            ;
         }
 
-        public Task<IEnumerable<UserMessage>> FindByRole(int roleId)
+        public Task<List<UserMessage>> FindByRole(int roleId)
         {
             _burrow.InitWorkSpace();
             var users = _userRepository.FindByRoleId(roleId);
             _burrow.CloseWorkSpace();
-            return users != null
+            return users.Any()
                 ? Task.FromResult(users.Select(x => new UserMessage()
                 {
                     Name = x.Name,
                     Age = x.Age,
                     Id = x.Id
-                }))
-                : null;
-            ;
+                }).ToList())
+                : Task.FromResult(new List<UserMessage>());
         }
     }
 }

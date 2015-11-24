@@ -8,6 +8,11 @@
       <!--<Provider Type="Orleans.Storage.AzureTableStorage" Name="AzureStore" DataConnectionString="DefaultEndpointsProtocol=https;AccountName=MYACCOUNTNAME;AccountKey=MYACCOUNTKEY" />-->
     </StorageProviders>
     <SeedNode Address="localhost" Port="11111" />
+    
+    <runtime>
+      <gcServer enabled="true"/>
+      <gcConcurrent enabled="false"/>
+    </runtime>
   </Globals>
   <Defaults>
     <Networking Address="localhost" Port="11111" />
@@ -21,4 +26,5 @@
     <Networking Address="localhost" Port="11111" />
     <ProxyingGateway Address="localhost" Port="30000" />
   </Override>
+ 
 </OrleansConfiguration>

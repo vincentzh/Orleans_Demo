@@ -18,9 +18,15 @@ namespace OrleansWebApiDemo.Controllers
     {
         [HttpGet]
         [ResponseType(typeof(RoleMessage))]
-        public async Task<RoleMessage> Get(int id)
+        public async Task<IHttpActionResult> Get(int id)
         {
-            return await RoleGrain().GetRole(id);
+            var role =await RoleGrain().GetRole(id);
+            if (role != null)
+                return Json(role);
+            else
+            {
+                return NotFound();
+            }
         }
 
         private static IRoleGrain RoleGrain()
@@ -35,9 +41,13 @@ namespace OrleansWebApiDemo.Controllers
         /// <returns></returns>
         [HttpPost]
         [ResponseType(typeof(RoleMessage))]
-        public async Task<RoleMessage> Post([FromBody]CreateRole createRole)
+        public async Task<IHttpActionResult> Post([FromBody]CreateRole createRole)
         {
-            return await RoleGrain().CreateRole(createRole);
+
+            var role= await RoleGrain().CreateRole(createRole);
+            if (role != null)
+                return Ok(new {id = role.Id});
+            return BadRequest();
         } 
     }
 }

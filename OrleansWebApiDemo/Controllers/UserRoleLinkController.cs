@@ -23,16 +23,22 @@ namespace OrleansWebApiDemo.Controllers
         }
         [HttpGet]
         [ResponseType(typeof(UserRoleLinkMessage))]
-        public async Task<UserRoleLinkMessage> Get(int id)
+        public async Task<IHttpActionResult> Get(int id)
         {
-            return await GetUserRoleLinkGrain().Get(id);
+            var userRoleLink= await GetUserRoleLinkGrain().Get(id);
+            if (userRoleLink != null)
+                return Json(userRoleLink);
+            return NotFound();
         }
 
         [HttpPost]
         [ResponseType(typeof(UserRoleLinkMessage))]
-        public async Task<UserRoleLinkMessage> Post(int userId,int roleId)
+        public async Task<IHttpActionResult> Post(int userId,int roleId)
         {
-            return await GetUserRoleLinkGrain().Create(userId, roleId);
+             var userRoleLink= await GetUserRoleLinkGrain().Create(userId, roleId);
+            if (userRoleLink != null)
+                return Ok(new {id = userRoleLink.Id});
+            return BadRequest();
         }
 
     }

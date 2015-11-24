@@ -32,7 +32,7 @@ namespace Presenters
                 },
                 Id = userRoleLink.Id
 
-            }):null;
+            }):Task.FromResult((UserRoleLinkMessage)null);
         }
 
         public Task<UserRoleLinkMessage> Create(int userId, int roleId)
