@@ -8,7 +8,7 @@
       <!--<Provider Type="Orleans.Storage.AzureTableStorage" Name="AzureStore" DataConnectionString="DefaultEndpointsProtocol=https;AccountName=MYACCOUNTNAME;AccountKey=MYACCOUNTKEY" />-->
     </StorageProviders>
     <SeedNode Address="localhost" Port="11111" />
-    
+  
     <runtime>
       <gcServer enabled="true"/>
       <gcConcurrent enabled="false"/>
